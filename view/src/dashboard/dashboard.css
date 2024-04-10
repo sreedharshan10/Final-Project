@@ -1,0 +1,22 @@
+.subMenu {
+    position: absolute;
+    top: calc(100% + 8px); /* Position below the parent option */
+    left: 0;
+    background-color: white; /* Background color for submenu */
+    border: 1px solid #ccc; /* Border for submenu */
+    border-radius: 4px; /* Border radius for submenu */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for submenu */
+    z-index: 1000; /* Ensure submenu appears above other content */
+    min-width: 120px; /* Minimum width for submenu */
+    padding: 8px 0; /* Padding for submenu items */
+  }
+  
+  .subMenu > * {
+    padding: 8px 16px; /* Padding for submenu items */
+    cursor: pointer; /* Set cursor to pointer for submenu items */
+  }
+  
+  .subMenu > *:hover {
+    background-color: #f5f5f5; /* Background color on hover for submenu items */
+  }
+  

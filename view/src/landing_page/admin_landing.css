@@ -1,0 +1,68 @@
+.container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container input[type='password'] {
+  width: 70%;
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.password-container button {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.password-container button:focus {
+  outline: none;
+}
+
+.password-container button:hover {
+  color: #007bff;
+}
+
+.password-container i {
+  font-size: 20px;
+  color: #666;
+}
+
+.container label {
+  font-weight: bold;
+}
+
+.container input[type='text'],
+.container input[type='email'],
+.container select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.container input[type='submit'] {
+  width: 100%;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.container input[type='submit']:hover {
+  background: #0056b3;
+}
