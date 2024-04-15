@@ -18,14 +18,15 @@ const HomeContent = ({ onAdminCreate, onCreateProjects }) => {
     <div>
       {!showCreateProjectForm && (
         <div>
-          <h1>Welcome to TimeNow!</h1>
-          <p>Welcome admin, bla bla bla...</p>
-          <div>
-            <Button variant="contained" color="primary" onClick={onAdminCreate}>Create User</Button>
-            <br />
-            <br />
-            <Button variant="contained" color="primary" onClick={handleCreateProjectButtonClick}>Create Projects</Button>
-          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+  <h1>Welcome to Tiempo!</h1>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Button variant="outlined" color="primary" onClick={onAdminCreate} style={{ width: '200px', height: '50px', fontSize: '16px', marginBottom: '10px' }}>Create User</Button>
+    <Button variant="outlined" color="primary" onClick={handleCreateProjectButtonClick} style={{ width: '200px', height: '50px', fontSize: '16px' }}>Create Projects</Button>
+  </div>
+</div>
+
+
           <AllUsersTable />
           <AllProjectsTable/>
         </div>

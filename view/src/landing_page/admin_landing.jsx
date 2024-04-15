@@ -9,6 +9,8 @@ import {
   Select,
   FormControl,
   InputLabel,
+  createTheme,
+  ThemeProvider,
 } from '@mui/material';
 
 const API_URL = 'http://localhost:3000/api';
@@ -23,6 +25,20 @@ const userRoles = [
   'Human Resource',
   'Finance',
 ];
+
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Montserrat, sans-serif',
+  },
+  palette: {
+    primary: {
+      main: '#FF00FF', // Primary color
+    },
+    secondary: {
+      main: '#FFFFFF', // Secondary color
+    },
+  },
+});
 
 function AdminLanding() {
   const [userData, setUserData] = useState({
@@ -58,7 +74,6 @@ function AdminLanding() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitting with role:', userData.role); // Log the role
 
     // Check if email or id already exists
     if (existingUsers.some((user) => user.email === userData.email || user.id === userData.id)) {
@@ -87,129 +102,132 @@ function AdminLanding() {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Typography variant="h4" gutterBottom>Add {userData.role ? userData.role : 'User'}</Typography>
-      <form onSubmit={handleSubmit}>
-        <FormControl fullWidth margin="normal" required>
-          <InputLabel id="role-label">Role</InputLabel>
-          <Select
-            labelId="role-label"
-            id="role"
-            name="role"
-            value={userData.role}
-            onChange={handleUserChange}
-          >
-            <MenuItem value="">Select Role</MenuItem>
-            <MenuItem value="admin">Admin</MenuItem>
-            <MenuItem value="user">User</MenuItem>
-          </Select>
-        </FormControl>
-
-        {userData.role === 'admin' && (
-          <>
-            <TextField
-              name="id"
-              label="Admin ID"
-              value={userData.id}
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="sm">
+        <Typography variant="h4" gutterBottom style={{ color: theme.palette.primary.main }}>
+          Add {userData.role ? userData.role : 'User'}
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <FormControl fullWidth margin="normal" required>
+            <InputLabel id="role-label" style={{ color: theme.palette.primary.main }}>Role</InputLabel>
+            <Select
+              labelId="role-label"
+              id="role"
+              name="role"
+              value={userData.role}
               onChange={handleUserChange}
-              fullWidth
-              margin="normal"
-              required
-            />
-            <TextField
-              name="name"
-              label="Admin Name"
-              value={userData.name}
-              onChange={handleUserChange}
-              fullWidth
-              margin="normal"
-              required
-            />
-            <TextField
-              name="email"
-              label="Email"
-              value={userData.email}
-              onChange={handleUserChange}
-              fullWidth
-              margin="normal"
-              required
-            />
-            <TextField
-              name="key"
-              label="Admin Key"
-              value={userData.key}
-              onChange={handleUserChange}
-              type="password"
-              fullWidth
-              margin="normal"
-              required
-            />
-          </>
-        )}
-
-        {userData.role === 'user' && (
-          <>
-            <TextField
-              name="id"
-              label="User ID"
-              value={userData.id}
-              onChange={handleUserChange}
-              fullWidth
-              margin="normal"
-              required
-            />
-            <TextField
-              name="name"
-              label="Username"
-              value={userData.name}
-              onChange={handleUserChange}
-              fullWidth
-              margin="normal"
-              required
-            />
-            <TextField
-              name="userRole"
-              label="User Role"
-              select
-              value={userData.userRole}
-              onChange={handleUserChange}
-              fullWidth
-              margin="normal"
-              required
             >
-              <MenuItem value="">Select User Role</MenuItem>
-              {userRoles.map((role) => (
-                <MenuItem key={role} value={role}>{role}</MenuItem>
-              ))}
-            </TextField>
-            <TextField
-              name="email"
-              label="Email"
-              value={userData.email}
-              onChange={handleUserChange}
-              fullWidth
-              margin="normal"
-              required
-            />
-            <TextField
-              name="password"
-              label="Password"
-              value={userData.password}
-              onChange={handleUserChange}
-              type="password"
-              fullWidth
-              margin="normal"
-              required
-            />
-            
-          </>
-        )}
+              <MenuItem value="">Select Role</MenuItem>
+              <MenuItem value="admin">Admin</MenuItem>
+              <MenuItem value="user">User</MenuItem>
+            </Select>
+          </FormControl>
 
-        <Button type="submit" variant="contained" color="primary">
-          Submit
-        </Button>
-      </form>
-    </Container>
+          {userData.role === 'admin' && (
+            <>
+              <TextField
+                name="id"
+                label="Admin ID"
+                value={userData.id}
+                onChange={handleUserChange}
+                fullWidth
+                margin="normal"
+                required
+              />
+              <TextField
+                name="name"
+                label="Admin Name"
+                value={userData.name}
+                onChange={handleUserChange}
+                fullWidth
+                margin="normal"
+                required
+              />
+              <TextField
+                name="email"
+                label="Email"
+                value={userData.email}
+                onChange={handleUserChange}
+                fullWidth
+                margin="normal"
+                required
+              />
+              <TextField
+                name="key"
+                label="Admin Key"
+                value={userData.key}
+                onChange={handleUserChange}
+                type="password"
+                fullWidth
+                margin="normal"
+                required
+              />
+            </>
+          )}
+
+          {userData.role === 'user' && (
+            <>
+              <TextField
+                name="id"
+                label="User ID"
+                value={userData.id}
+                onChange={handleUserChange}
+                fullWidth
+                margin="normal"
+                required
+              />
+              <TextField
+                name="name"
+                label="Username"
+                value={userData.name}
+                onChange={handleUserChange}
+                fullWidth
+                margin="normal"
+                required
+              />
+              <TextField
+                name="userRole"
+                label="User Role"
+                select
+                value={userData.userRole}
+                onChange={handleUserChange}
+                fullWidth
+                margin="normal"
+                required
+              >
+                <MenuItem value="">Select User Role</MenuItem>
+                {userRoles.map((role) => (
+                  <MenuItem key={role} value={role}>{role}</MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                name="email"
+                label="Email"
+                value={userData.email}
+                onChange={handleUserChange}
+                fullWidth
+                margin="normal"
+                required
+              />
+              <TextField
+                name="password"
+                label="Password"
+                value={userData.password}
+                onChange={handleUserChange}
+                type="password"
+                fullWidth
+                margin="normal"
+                required
+              />
+            </>
+          )}
+
+          <Button type="submit" variant="outlined" color="primary">
+            Submit
+          </Button>
+        </form>
+      </Container>
+    </ThemeProvider>
   );
 }
 

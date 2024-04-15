@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'; // Import Axios library
+import { ChevronLeft, ChevronRight } from '@material-ui/icons';
+import { IconButton } from '@material-ui/core';
 
 function Timesheet() {
     const { userId } = useParams();
@@ -75,12 +77,12 @@ function Timesheet() {
     }
  
     // Function to handle week toggle
-    const handleWeekToggle = (direction) => {
-        const newWeekStart = new Date(selectedWeekStart);
-        direction === 'prev' ? newWeekStart.setDate(selectedWeekStart.getDate() - 7) : newWeekStart.setDate(selectedWeekStart.getDate() + 7);
-        setSelectedWeekStart(newWeekStart);
-        resetRows(); // Reset rows when toggling weeks
-    };
+    // const handleWeekToggle = (direction) => {
+    //     const newWeekStart = new Date(selectedWeekStart);
+    //     direction === 'prev' ? newWeekStart.setDate(selectedWeekStart.getDate() - 7) : newWeekStart.setDate(selectedWeekStart.getDate() + 7);
+    //     setSelectedWeekStart(newWeekStart);
+    //     resetRows(); // Reset rows when toggling weeks
+    // };
     
     const resetRows = () => {
         setRows([{
@@ -93,7 +95,12 @@ function Timesheet() {
         }]);
     };
     
-    
+    const handleWeekToggle = (direction) => {
+        const newWeekStart = new Date(selectedWeekStart);
+        direction === 'prev' ? newWeekStart.setDate(selectedWeekStart.getDate() - 7) : newWeekStart.setDate(selectedWeekStart.getDate() + 7);
+        setSelectedWeekStart(newWeekStart);
+        resetRows(); // Reset rows when toggling weeks
+    };
  
     // Function to format date to "DD MMM YYYY" format
     const formatDate = (date) => {
@@ -174,20 +181,19 @@ function Timesheet() {
     
                 const responseData = response.data;
                 console.log(`Timesheet submitted successfully for row ${i + 1}:`, responseData);
+                alert('Timesheets submitted successfully!');
+                resetRows(); // Reset rows after successful submission
+
+
             }
+            
         } catch (error) {
             console.error('Error submitting timesheets:', error);
+            alert('Error submitting timesheets!');
+
         }
     };
     
-    
-    
-    
-    
-    
-    
-   
-   
  
     const calculateTotalHoursBAU = (rowIndex) => {
         return rows[rowIndex].hoursBAU.reduce((total, hour) => total + hour, 0);
@@ -204,13 +210,17 @@ function Timesheet() {
             <div className="content-container" style={{ color: '#030637' }}>
                 <h1 style={{ marginTop: "5px", marginBottom: "0px", color: "#3C0753" }}>Timesheet</h1>
                 <div className="h3-row" style={{ color: "#720455" }}>
-                    <h3>Total Hours: {calculateTotal()}</h3>
-                    <div>
-                        <button onClick={() => handleWeekToggle('prev')}>Previous Week</button>
-                        <h3 style={{ color: "#910A67" }}>{formatDate(weekStartDate)} - {formatDate(weekEndDate)}</h3>
-                        <button onClick={() => handleWeekToggle('next')}>Next Week</button>
-                    </div>
+                <h3>Total Hours: {calculateTotal()}</h3>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <IconButton onClick={() => handleWeekToggle('prev')}>
+                        <ChevronLeft />
+                    </IconButton>
+                    <h3 style={{ color: "#910A67" }}>{formatDate(weekStartDate)} - {formatDate(weekEndDate)} {weekStartDate.getFullYear()}</h3>
+                    <IconButton onClick={() => handleWeekToggle('next')}>
+                        <ChevronRight />
+                    </IconButton>
                 </div>
+            </div>
                 <details>
                     <summary style={{
                         marginTop: "5px",
@@ -291,7 +301,7 @@ function Timesheet() {
     .filter(project => project.projectName === row.selectedProject) // Filter based on the selected project
     .map(project => project.projectDomain)}</td>
                                     <td>
-                                    <select
+                                    <select width="50%"
     value={row.selectedProject}
     onChange={(e) => handleProjectChange(e, rowIndex)}
     style={{ width: '125px' }}

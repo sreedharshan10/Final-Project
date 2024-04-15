@@ -6,6 +6,7 @@
     "@material-ui/icons": "^4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui/icons-material": "^5.15.14",
+    "@mui/styles": "^5.15.15",
     "@mui/x-date-pickers": "^7.1.0",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",

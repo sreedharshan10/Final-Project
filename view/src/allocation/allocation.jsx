@@ -237,52 +237,54 @@ const Allocation = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {selectedMembers.map((memberId) => (
-                  <TableRow key={memberId}>
-                    <TableCell>{users.find(user => user.id === memberId)?.name}</TableCell>
-                    <TableCell>
-                      <Select
-                        value={memberRoles.find(role => role.userId === memberId)?.role || ''}
-                        onChange={handleMemberRoleChange(memberId)}
-                        fullWidth
-                        required
-                      >
-                        {getRoleOptions(selectedProjectDetails.projectDomain)}
-                      </Select>
-                    </TableCell>
-                    <TableCell>
-                      <Box border={1} p={1}>
-                        <Typography variant="body2" onClick={(event) => handleTaskFieldClick(event, memberId)} style={{ cursor: 'pointer' }}>
-                          {memberTasks.find(mt => mt.userId === memberId)?.tasks.join(', ') || 'No tasks selected'}
-                        </Typography>
-                      </Box>
-                      <Popover
-                        open={anchorEl && selectedTaskMemberId === memberId}
-                        anchorEl={anchorEl}
-                        onClose={handleClosePopover}
-                      >
-                        <FormControl component="fieldset">
-                          <FormGroup>
-                            {selectedProjectDetails.projectTasks.map((task, index) => (
-                              <FormControlLabel
-                                key={index}
-                                control={<Checkbox
-                                  checked={memberTasks.find(mt => mt.userId === memberId)?.tasks.includes(task) || false}
-                                  onChange={() => handleTaskCheckboxChange(memberId, task)}
-                                  name={task}
-                                />}
-                                label={task}
-                              />
-                            ))}
-                          </FormGroup>
-                        </FormControl>
-                      </Popover>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
+  {selectedMembers.map((memberId) => (
+    <TableRow key={memberId}>
+      <TableCell style={{ width: '30%' }}>{users.find(user => user.id === memberId)?.name}</TableCell>
+      <TableCell style={{ width: '30%' }}>
+        <Select
+          value={memberRoles.find(role => role.userId === memberId)?.role || ''}
+          onChange={handleMemberRoleChange(memberId)}
+          fullWidth
+          required
+        >
+          {getRoleOptions(selectedProjectDetails.projectDomain)}
+        </Select>
+      </TableCell>
+      <TableCell style={{ width: '40%' }}>
+        <Box border={1} p={1}>
+          <Typography variant="body2" onClick={(event) => handleTaskFieldClick(event, memberId)} style={{ cursor: 'pointer' }}>
+            {memberTasks.find(mt => mt.userId === memberId)?.tasks.join(', ') || 'No tasks selected'}
+          </Typography>
+        </Box>
+        <Popover
+          open={anchorEl && selectedTaskMemberId === memberId}
+          anchorEl={anchorEl}
+          onClose={handleClosePopover}
+        >
+          <FormControl component="fieldset">
+            <FormGroup>
+              {selectedProjectDetails.projectTasks.map((task, index) => (
+                <FormControlLabel
+                  key={index}
+                  control={<Checkbox
+                    checked={memberTasks.find(mt => mt.userId === memberId)?.tasks.includes(task) || false}
+                    onChange={() => handleTaskCheckboxChange(memberId, task)}
+                    name={task}
+                  />}
+                  label={task}
+                />
+              ))}
+            </FormGroup>
+          </FormControl>
+        </Popover>
+      </TableCell>
+    </TableRow>
+  ))}
+</TableBody>
+
             </Table>
           )}
+          <br />
           <Button type="submit" variant="contained" color="primary">Create</Button>
         </form>
       )}

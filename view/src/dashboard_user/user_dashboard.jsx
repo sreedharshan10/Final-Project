@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Drawer, List, ListItem, ListItemText, IconButton, makeStyles, ThemeProvider, createMuiTheme, CssBaseline, Button, Divider, Toolbar, Typography } from '@material-ui/core';
+import { Drawer, List, ListItem, ListItemText, IconButton, makeStyles, ThemeProvider, CssBaseline, Button, Divider, Toolbar, Typography } from '@material-ui/core';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
@@ -9,6 +9,7 @@ import FeedbackForm from '../feedback/feedback';
 import Timesheet from '../timesheet/timesheet';
 import CloseIcon from '@mui/icons-material/Close';
 import UserContent from '../user_content/user_home';
+import { createTheme } from '@material-ui/core/styles'; // Import createTheme from the new location
 
 const drawerWidth = 180;
 
@@ -49,13 +50,15 @@ const useStyles = makeStyles((theme) => ({
   profileName: {
     fontSize: 16,
     marginLeft: theme.spacing(0), 
-    marginTop: theme.spacing(1.3)
+    marginTop: theme.spacing(1.3),
+    fontFamily: 'Montserrat, sans-serif', // Montserrat font
   },
   websiteName: {
     fontSize: 24,
     fontWeight: 'bold',
     marginLeft: theme.spacing(1),
     marginTop: theme.spacing(1),
+    fontFamily: 'Montserrat, sans-serif', // Montserrat font
   },
   closeIcon: {
     position: 'absolute',
@@ -130,9 +133,9 @@ const Dashboard2 = () => {
   const currentUser = userData && userData.find(user => user.id === userId);
   const userName = currentUser ? currentUser.name : '';
 
-  const theme = createMuiTheme({
+  const theme = createTheme({ // Use createTheme instead of createMuiTheme
     typography: {
-      fontFamily: '"Open Sans", sans-serif',
+      fontFamily: '"Montserrat", sans-serif',
     },
     palette: {
       type: isDarkMode ? 'dark' : 'light',

@@ -70,7 +70,7 @@ const AllUsersTable = () => {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <h2>All Users</h2>
+        <h2 >All Users</h2>
         <div style={{ marginTop: '10px' }}>
           <Select
             value={selectedRole}

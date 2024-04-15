@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemText, IconButton, makeStyles, ThemeProvider, createMuiTheme, CssBaseline, Button, Divider, Toolbar, Typography, createTheme } from '@material-ui/core';
+import { Drawer, List, ListItem, ListItemText, IconButton, makeStyles, ThemeProvider, CssBaseline, Button, Divider, Toolbar, Typography } from '@material-ui/core';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
@@ -11,6 +11,7 @@ import HomeContent from '../home_page/home';
 import AdminLanding from '../landing_page/admin_landing';
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
+import { createTheme } from '@material-ui/core/styles';
 
 const drawerWidth = 160;
 
@@ -51,13 +52,12 @@ const useStyles = makeStyles((theme) => ({
   profileName: {
     fontSize: 16,
     marginLeft: theme.spacing(0), 
-    marginTop: theme.spacing(1.3)
+    marginTop: theme.spacing(1.3),
+    fontFamily: 'Montserrat, sans-serif', // Montserrat font
   },
-  websiteName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginLeft: theme.spacing(1),
-    marginTop: theme.spacing(1),
+  websiteLogo: {
+    width: '100%',
+    height: 'auto',
   },
   closeIcon: {
     position: 'absolute',
@@ -74,6 +74,7 @@ const Dashboard1 = () => {
   const [showAllocation, setShowAllocation] = useState(false);
   const [showHomeContent, setShowHomeContent] = useState(true);
   const [showAdminLanding, setShowAdminLanding] = useState(false); // Add state for AdminLanding
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
@@ -125,26 +126,38 @@ const Dashboard1 = () => {
     // Clear local storage
     localStorage.removeItem('authToken'); // Example: Remove authentication token
     // Redirect the user to the login page
-    window.location.href = '/'; // Redirect using window.location.href
+    navigate('/'); // Navigate to home page
   };
   
-  
-  
+
+  const paletteType = isDarkMode ? 'dark' : 'light';
 
   const theme = createTheme({
     typography: {
-      fontFamily: '"Open Sans", sans-serif',
+      fontFamily: '"Montserrat", sans-serif', // Montserrat font
     },
     palette: {
-      type: isDarkMode ? 'dark' : 'light',
+      type: paletteType,
       primary: {
         main: '#FF00FF',
       },
       secondary: {
         main: '#FFFFFF',
       },
+      // Define colors for light mode
+      light: {
+        primary: '#FF00FF',
+        secondary: '#FFFFFF',
+      },
+      // Define colors for dark mode
+      dark: {
+        primary: '#00FF00',
+        secondary: '#000000',
+      },
     },
   });
+
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -158,22 +171,20 @@ const Dashboard1 = () => {
           }}
         >
           <Toolbar className={classes.toolbar}>
-          <img src="C:\Users\ASUS\OneDrive\Desktop\Final-Project\assets\Screenshot_2024-04-16_011818-transformed-removebg-preview.png" alt="Website Logo" className={classes.websiteLogo} />            <div className={classes.profileContainer}>
+            <img src="C:\Users\ASUS\OneDrive\Desktop\Final-Project\assets\Screenshot_2024-04-16_011818-transformed-removebg-preview.png" alt="Website Logo" className={classes.websiteLogo} />
+            <div className={classes.profileContainer}>
               <PersonOutlineIcon className={classes.profileIcon} />
               <Typography variant="h6" className={classes.profileName}>Your Profile Name</Typography>
             </div>
           </Toolbar>
           <Divider />
           <List>
-                      
-          <ListItem button onClick={handleHomeClick}>
+            <ListItem button onClick={handleHomeClick}>
               <ListItemText primary="Home" />
             </ListItem>
             <ListItem button onClick={handleAllocationClick}>
               <ListItemText primary="Allocation" />
             </ListItem>
-
-            {/* Remove "Create User" option from sidebar */}
           </List>
           <Divider />
           <IconButton onClick={toggleTheme}>
@@ -189,23 +200,22 @@ const Dashboard1 = () => {
           </List>
         </Drawer>
         <main className={classes.content}>
-  <div className={classes.toolbar} />
-  <div>
-    {showHomeContent && <HomeContent onAdminCreate={handleCreateUserClick} />}
-    {showTimesheet && <Timesheet />}
-    {showFeedbackForm && <FeedbackForm />}
-    {showAllocation && <Allocation />}
-    {showAdminLanding && (
-      <>
-        <AdminLanding setShowAdminLanding={setShowAdminLanding} />
-        <IconButton className={classes.closeIcon} onClick={handleCloseAdminLanding}>
-          <CloseIcon />
-        </IconButton>
-      </>
-    )}
-  </div>
-</main>
-
+          <div className={classes.toolbar} />
+          <div>
+            {showHomeContent && <HomeContent onAdminCreate={handleCreateUserClick} />}
+            {showTimesheet && <Timesheet />}
+            {showFeedbackForm && <FeedbackForm />}
+            {showAllocation && <Allocation />}
+            {showAdminLanding && (
+              <>
+                <AdminLanding setShowAdminLanding={setShowAdminLanding} />
+                <IconButton className={classes.closeIcon} onClick={handleCloseAdminLanding}>
+                  <CloseIcon />
+                </IconButton>
+              </>
+            )}
+          </div>
+        </main>
       </div>
     </ThemeProvider>
   );
