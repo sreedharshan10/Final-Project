@@ -129,6 +129,7 @@ async function sendEmail(email, name, userId, adminId, userData) {
   }
 }
 
+const { ObjectId } = require('mongodb'); // Correct import statement
 
 app.post('/api/reset-password', async (req, res) => {
   try {
@@ -142,16 +143,23 @@ app.post('/api/reset-password', async (req, res) => {
     // Hash the new password
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // Update user's password with the hashed password
-    const updatedUser = await User.findByIdAndUpdate(id, { password: hashedPassword }, { new: true });
+    // Convert id string to ObjectId
+    const userId = new ObjectId(id); // Use new to create an instance of ObjectId
+
+    // Update user's password with the hashed password and set passwordChanged flag to true
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: userId },
+      { password: hashedPassword, passwordChanged: true }, // Set passwordChanged flag to true
+      { new: true }
+    );
 
     // Check if user exists
     if (!updatedUser) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Send email notification
-    // sendEmail(updatedUser.email, updatedUser.name, null, 'password-reset', null);
+    // Redirect to home page after successful password reset
+    // You can handle redirection in the frontend after receiving a successful response
 
     res.status(200).json({ success: true, message: 'Password reset successfully' });
   } catch (error) {

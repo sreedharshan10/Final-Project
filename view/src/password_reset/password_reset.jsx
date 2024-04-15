@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // Import useLocation and useNavigate hooks
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { TextField, Button, Typography, Container, CssBaseline, Grid } from '@material-ui/core';
 import './pass.css';
@@ -33,6 +33,7 @@ function ResetPassword() {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +47,12 @@ function ResetPassword() {
       setMessage(response.data.message);
       setNewPassword('');
       setConfirmPassword('');
+
+      // Display alert box upon successful password change
+      window.alert(response.data.message);
+
+      // Navigate to home page after user clicks OK
+      navigate('/');
     } catch (error) {
       console.error('Error resetting password:', error);
       setMessage('Failed to reset password');

@@ -158,8 +158,7 @@ const Dashboard1 = () => {
           }}
         >
           <Toolbar className={classes.toolbar}>
-            <Typography variant="h5" className={classes.websiteName}>TimeNow</Typography>
-            <div className={classes.profileContainer}>
+          <img src="C:\Users\ASUS\OneDrive\Desktop\Final-Project\assets\Screenshot_2024-04-16_011818-transformed-removebg-preview.png" alt="Website Logo" className={classes.websiteLogo} />            <div className={classes.profileContainer}>
               <PersonOutlineIcon className={classes.profileIcon} />
               <Typography variant="h6" className={classes.profileName}>Your Profile Name</Typography>
             </div>
