@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import './login_page.css'; // Import the CSS file for styling
+import '../password_reset/pass.css'
 
 const LoginPage = () => {
   const [loginMode, setLoginMode] = useState('user');
@@ -103,64 +104,66 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-container"> {/* Apply the unique class here */}
-      <h2>Login</h2>
-      {loginSuccess && (
-        <Alert variant="filled" severity="success">
-          Login successful!
-        </Alert>
-      )}
-      <div className="mode-selection">
-        <label>
-          <input
-            type="radio"
-            value="user"
-            checked={loginMode === 'user'}
-            onChange={() => handleModeChange('user')}
-          />
-          User
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="admin"
-            checked={loginMode === 'admin'}
-            onChange={() => handleModeChange('admin')}
-          />
-          Admin
-        </label>
+    <div className='background'>
+      <div className="login-container"> {/* Apply the unique class here */}
+        <h2>Login</h2>
+        {loginSuccess && (
+          <Alert variant="filled" severity="success">
+            Login successful!
+          </Alert>
+        )}
+        <div className="mode-selection">
+          <label>
+            <input
+              type="radio"
+              value="user"
+              checked={loginMode === 'user'}
+              onChange={() => handleModeChange('user')}
+            />
+            User
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="admin"
+              checked={loginMode === 'admin'}
+              onChange={() => handleModeChange('admin')}
+            />
+            Admin
+          </label>
+        </div>
+        <form onSubmit={handleSubmit} className="login-form">
+          {loginMode === 'user' && (
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
+              <input type="text" id="email" name="email" />
+            </div>
+          )}
+          {loginMode === 'admin' && (
+            <>
+              <div className="form-group">
+                <label htmlFor="adminEmail">Admin Email:</label>
+                <input type="text" id="adminEmail" name="adminEmail" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="adminId">Admin ID:</label>
+                <input type="text" id="adminId" name="adminId" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="adminKey">Admin Key:</label>
+                <input type="password" id="adminKey" name="adminKey" />
+              </div>
+            </>
+          )}
+          {loginMode === 'user' && (
+            <div className="form-group">
+              <label htmlFor="password">Password:</label>
+              <input type="password" id="password" name="password" />
+            </div>
+          )}
+          <button type="submit" className="login-button">Login</button>
+        </form>
       </div>
-      <form onSubmit={handleSubmit} className="login-form">
-        {loginMode === 'user' && (
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input type="text" id="email" name="email" />
-          </div>
-        )}
-        {loginMode === 'admin' && (
-          <>
-            <div className="form-group">
-              <label htmlFor="adminEmail">Admin Email:</label>
-              <input type="text" id="adminEmail" name="adminEmail" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="adminId">Admin ID:</label>
-              <input type="text" id="adminId" name="adminId" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="adminKey">Admin Key:</label>
-              <input type="password" id="adminKey" name="adminKey" />
-            </div>
-          </>
-        )}
-        {loginMode === 'user' && (
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" name="password" />
-          </div>
-        )}
-        <button type="submit" className="login-button">Login</button>
-      </form>
     </div>
   );
 };

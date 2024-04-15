@@ -1,73 +1,85 @@
+/* Add Montserrat font to the body */
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Rest of your existing styles */
 .login-container {
-    width: 400px;
-    height: 400px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background: linear-gradient(135deg, #ff4a4a, #2f4f4f); /* Red and blue gradient */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    text-align: center; /* Center text and form elements */
-  }
-  
-  h2 {
-    color: #fff;
-  }
-  
-  .mode-selection {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .mode-selection label {
-    margin-right: 20px;
-    color: #fff;
-  }
-  
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center form items horizontally */
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-    text-align: left; /* Align labels to the left */
-  }
-  
-  .form-group label {
-    color: #fff;
-  }
-  
-  .form-group input {
-    width: 100%; /* Set input fields to occupy full width */
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box; /* Ensure padding is included in the width */
-  }
-  
-  .form-group input[type="email"] {
-    width: calc(100% - 22px); /* Adjust email field width */
-  }
-  
-  .form-group input[type="tel"] {
-    width: calc(100% - 22px); /* Adjust phone number field width */
-  }
-  
-  .login-button {
-    background-color: #fff; /* White background color */
-    color: #000; /* Black text color */
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .login-button:hover {
-    background-color: #eee; /* Light gray background color on hover */
-  }
-  
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: linear-gradient(135deg, #ff4a4a, #2f4f4f); /* Red and blue gradient */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center; /* Center text and form elements */
+}
+
+h2 {
+  color: #fff;
+}
+
+.mode-selection {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.mode-selection label {
+  margin-right: 20px;
+  color: #fff;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center form items horizontally */
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left; /* Align labels to the left */
+}
+
+.form-group label {
+  color: #fff;
+}
+
+.form-group input {
+  width: 100%; /* Set input fields to occupy full width */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.form-group input[type="email"] {
+  width: calc(100% - 22px); /* Adjust email field width */
+}
+
+.form-group input[type="tel"] {
+  width: calc(100% - 22px); /* Adjust phone number field width */
+}
+
+.login-button {
+  background-color: #fff; /* White background color */
+  color: #000; /* Black text color */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #eee; /* Light gray background color on hover */
+}
+.background {
+  background-image: url('../assets/image.png'); /* Update the path to your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+

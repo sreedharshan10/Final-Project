@@ -8,7 +8,7 @@ import AdminLanding from './landing_page/admin_landing.jsx';
 import ResetPassword from './password_reset/password_reset.jsx';
 import Dashboard1 from './dashboard/dashboard.jsx';
 import Dashboard2 from './dashboard_user/user_dashboard.jsx';
-
+import './App.css'
 
 
 const router = createBrowserRouter([
