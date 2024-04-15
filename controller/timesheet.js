@@ -16,30 +16,15 @@ mongoose.connect('mongodb+srv://srijayhem10:zTjtmPyN52dg9TOO@cluster0.hafz5co.mo
 
 // Function to generate unique timesheet ID
 async function generateTimesheetId() {
-    const latestTimesheet = await Timesheet.findOne().sort({ timesheetId: -1 });
-    if (latestTimesheet && latestTimesheet.timesheetId) {
-        const lastId = latestTimesheet.timesheetId;
-        const numericPart = parseInt(lastId.substring(2)); // Extract numeric part
-        if (!isNaN(numericPart)) {
-            const nextId = numericPart + 1; // Increment
-            return 'TS' + nextId.toString().padStart(2, '0'); // Format with leading zeros if needed
-        }
-    }
-    return 'TS01'; // If no previous timesheets exist, start with TS01
+    const totalTimesheets = await Timesheet.countDocuments();
+    const nextId = totalTimesheets + 1;
+    return 'TS' + nextId.toString().padStart(2, '0');
 }
 
-// Function to generate unique feedback ID based on timesheet ID
 async function generateFeedbackId() {
-    const latestFeedback = await Timesheet.findOne().sort({ feedbackId: -1 });
-    if (latestFeedback && latestFeedback.feedbackId) {
-        const lastId = latestFeedback.feedbackId;
-        const numericPart = parseInt(lastId.substring(1)); // Extract numeric part after "F"
-        if (!isNaN(numericPart)) {
-            const nextId = numericPart + 1; // Increment
-            return 'F' + nextId.toString().padStart(2, '0'); // Format with leading zeros if needed
-        }
-    }
-    return 'F01'; // If no previous feedbacks exist, start with "F01"
+    const totalFeedbacks = await Timesheet.countDocuments();
+    const nextId = totalFeedbacks + 1;
+    return 'F' + nextId.toString().padStart(2, '0');
 }
 
 // Endpoint to get all timesheets

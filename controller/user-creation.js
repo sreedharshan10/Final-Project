@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const Admin = require('../model/Admin');
 const User = require('../model/User');
 const Project = require('../model/Projects')
+const bcrypt = require('bcryptjs');
 
  
 
@@ -127,3 +128,34 @@ async function sendEmail(email, name, userId, adminId, userData) {
     console.error('Error sending email:', error);
   }
 }
+
+
+app.post('/api/reset-password', async (req, res) => {
+  try {
+    const { id, newPassword, confirmPassword } = req.body;
+
+    // Check if passwords match
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ message: 'Passwords do not match' });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update user's password with the hashed password
+    const updatedUser = await User.findByIdAndUpdate(id, { password: hashedPassword }, { new: true });
+
+    // Check if user exists
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Send email notification
+    // sendEmail(updatedUser.email, updatedUser.name, null, 'password-reset', null);
+
+    res.status(200).json({ success: true, message: 'Password reset successfully' });
+  } catch (error) {
+    console.error('Error resetting password:', error);
+    res.status(500).json({ success: false, message: 'Failed to reset password' });
+  }
+});

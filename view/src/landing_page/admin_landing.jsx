@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   TextField,
@@ -36,6 +36,21 @@ function AdminLanding() {
     password: '',
   });
 
+  const [existingUsers, setExistingUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/users`);
+        setExistingUsers(response.data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   const handleUserChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -44,6 +59,13 @@ function AdminLanding() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Submitting with role:', userData.role); // Log the role
+
+    // Check if email or id already exists
+    if (existingUsers.some((user) => user.email === userData.email || user.id === userData.id)) {
+      alert('Email or ID already exists');
+      return;
+    }
+
     try {
       const response = await axios.post(`${API_URL}/${userData.role === 'admin' ? 'admin' : 'user'}`, userData);
       console.log('Server response:', response.data); // Log the server response
@@ -63,7 +85,6 @@ function AdminLanding() {
       alert(`Failed to store ${userData.role} data`);
     }
   };
-  
 
   return (
     <Container maxWidth="sm">

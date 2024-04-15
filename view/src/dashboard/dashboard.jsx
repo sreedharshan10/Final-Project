@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemText, IconButton, makeStyles, ThemeProvider, createMuiTheme, CssBaseline, Button, Divider, Toolbar, Typography } from '@material-ui/core';
+import { Drawer, List, ListItem, ListItemText, IconButton, makeStyles, ThemeProvider, createMuiTheme, CssBaseline, Button, Divider, Toolbar, Typography, createTheme } from '@material-ui/core';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
@@ -10,8 +10,9 @@ import Allocation from '../allocation/allocation';
 import HomeContent from '../home_page/home';
 import AdminLanding from '../landing_page/admin_landing';
 import CloseIcon from '@mui/icons-material/Close';
+import { useNavigate } from 'react-router-dom';
 
-const drawerWidth = 180;
+const drawerWidth = 160;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -120,7 +121,17 @@ const Dashboard1 = () => {
     setShowAdminLanding(false); // Hide AdminLanding
   };
 
-  const theme = createMuiTheme({
+  const handleLogout = () => {
+    // Clear local storage
+    localStorage.removeItem('authToken'); // Example: Remove authentication token
+    // Redirect the user to the login page
+    window.location.href = '/'; // Redirect using window.location.href
+  };
+  
+  
+  
+
+  const theme = createTheme({
     typography: {
       fontFamily: '"Open Sans", sans-serif',
     },
@@ -155,28 +166,24 @@ const Dashboard1 = () => {
           </Toolbar>
           <Divider />
           <List>
-            <ListItem button onClick={handleTimesheetClick}>
-              <ListItemText primary="Timesheet" />
+                      
+          <ListItem button onClick={handleHomeClick}>
+              <ListItemText primary="Home" />
             </ListItem>
             <ListItem button onClick={handleAllocationClick}>
               <ListItemText primary="Allocation" />
             </ListItem>
-            <ListItem button onClick={handleFeedbackClick}>
-              <ListItemText primary="Feedback" />
-            </ListItem>
-            <ListItem button onClick={handleHomeClick}>
-              <ListItemText primary="Home" />
-            </ListItem>
+
             {/* Remove "Create User" option from sidebar */}
           </List>
           <Divider />
           <IconButton onClick={toggleTheme}>
-            {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+            {isDarkMode ? <Brightness4Icon /> : <Brightness7Icon />}
           </IconButton>
           <Divider />
           <List>
             <ListItem>
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onClick={handleLogout}>
                 Logout
               </Button>
             </ListItem>

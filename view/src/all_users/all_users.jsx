@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Table, TableHead, TableBody, TableCell, TableRow, Paper, Select, MenuItem, makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core';
-
+import './all_users.css'
 const useStyles = makeStyles((theme) => ({
   primaryRow: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: 'rgb(60, 7, 83)',
+    color: '#FFFFF'
   },
 }));
 
@@ -102,7 +103,7 @@ const AllUsersTable = () => {
             </TableHead>
             <TableBody>
               {filteredUsers.map((user, index) => (
-                <TableRow key={index} className={index % 2 === 0 ? classes.primaryRow : ''}>
+                <TableRow key={index} className={index % 2 === 0 ? 'oddrow' : ''}>
                   <TableCell>{user.id}</TableCell>
                   <TableCell>{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>

@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const ProjectAllocation = require('../model/Allocation');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const User = require('../model/User'); // Import the User model
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -40,23 +42,12 @@ const transporter = nodemailer.createTransport({
 });
 
 // Define route for creating project allocations
+// Define route for creating project allocations
 app.post('/api/project-allocations', async (req, res) => {
   try {
     const { projectName, projectId, projectDomain, userDetails, teamLead } = req.body;
 
-    // Create a new project allocation document
-    const projectAllocation = new ProjectAllocation({
-      projectName,
-      projectId,
-      projectDomain,
-      userDetails,
-      teamLead
-    });
-
-    // Save the project allocation document to the database
-    await projectAllocation.save();
-
-    // Send emails to users sequentially
+    // Send emails to users
     for (const user of userDetails) {
       const mailOptions = {
         from: 'sreedharshan@jmangroup.com',
@@ -77,7 +68,23 @@ app.post('/api/project-allocations', async (req, res) => {
       // Send email
       await transporter.sendMail(mailOptions);
       console.log(`Email sent to ${user.userEmail}`);
+
+      // Update projectAllocated field in the users collection
+      await User.updateOne({ id: user.userId }, { projectAllocated: true });
+      console.log(`Project allocation updated for user with id ${user.userId}`);
     }
+
+    // Create a new project allocation document
+    const projectAllocation = new ProjectAllocation({
+      projectName,
+      projectId,
+      projectDomain,
+      userDetails,
+      teamLead
+    });
+
+    // Save the project allocation document to the database
+    await projectAllocation.save();
 
     // Respond with success message
     res.status(201).json({ message: 'Project allocation created successfully' });
@@ -87,6 +94,8 @@ app.post('/api/project-allocations', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

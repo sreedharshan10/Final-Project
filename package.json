@@ -9,6 +9,7 @@
     "@mui/x-date-pickers": "^7.1.0",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.19.2",
@@ -23,6 +24,6 @@
     "uuid": "^9.0.1"
   },
   "scripts": {
-    "start": "nodemon dummy.js user-creation.js login.js timesheet.js"
+    "start": "nodemon dummy.js user-creation.js login.js timesheet.js feedback.js"
   }
 }

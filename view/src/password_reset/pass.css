@@ -1,43 +1,6 @@
-.center-container1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .reset-password-container1 {
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
+.background {
+  background-image: url('https://th.bing.com/th/id/R.815b12c3fe90fd4e4eeeaa8881295b35?rik=1UC%2bwMHbSUatmQ&riu=http%3a%2f%2fhdqwalls.com%2fdownload%2f1%2fgeometry-abstract-cyberspace-5k-hu.jpg&ehk=hU6%2b5P5qL9tfKSDdpuVykCiHakxyBCQwuBT2eDoRPdk%3d&risl=1&pid=ImgRaw&r=0');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

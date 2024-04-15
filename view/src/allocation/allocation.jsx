@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Table, TableHead, TableRow, TableCell, TableBody, Select, MenuItem, TextField, Typography, Popover, FormControl, FormGroup, FormControlLabel, Checkbox, Box } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import axios from 'axios';
-
+ 
 const Allocation = () => {
   const [showForm, setShowForm] = useState(false);
   const [projects, setProjects] = useState([]);
@@ -17,16 +17,18 @@ const Allocation = () => {
   const [memberTasks, setMemberTasks] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedTaskMemberId, setSelectedTaskMemberId] = useState(null);
+  const [projectAllocations, setProjectAllocations] = useState([]);
 
   useEffect(() => {
     fetchProjects();
     fetchUsers();
+    fetchProjectAllocations();
   }, []);
-
+ 
   useEffect(() => {
     setFilteredUsers(users.filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase())).sort((a, b) => a.name.localeCompare(b.name)));
   }, [searchTerm, users]);
-
+ 
   const fetchProjects = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/projects');
@@ -35,7 +37,14 @@ const Allocation = () => {
       console.error('Error fetching projects:', error);
     }
   };
-
+  const fetchProjectAllocations = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/api/project-allocations');
+      setProjectAllocations(response.data);
+    } catch (error) {
+      console.error('Error fetching project allocations:', error);
+    }
+  };
   const fetchUsers = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/users');
@@ -44,15 +53,15 @@ const Allocation = () => {
       console.error('Error fetching users:', error);
     }
   };
-
+ 
   const handleAllocateProjectsClick = () => {
     setShowForm(true);
   };
-
+ 
   const handleProjectChange = async (event) => {
     const selectedProjectName = event.target.value;
     setSelectedProject(selectedProjectName);
-  
+ 
     try {
       const selectedProjectDetails = projects.find(project => project.projectName === selectedProjectName);
       setSelectedProjectDetails(selectedProjectDetails);
@@ -64,11 +73,17 @@ const Allocation = () => {
       console.error('Error fetching project details:', error);
     }
   };
-
+ 
   const handleUserSelectionChange = (userId) => (event) => {
+    if (!selectedProjectDetails) {
+      // Project is not selected, show an alert or handle the situation accordingly
+      alert('Please select a project first.');
+      return;
+    }
+  
     const isChecked = event.target.checked;
     let newSelectedMembers;
-    
+  
     if (isChecked) {
       // Add the user if checked
       newSelectedMembers = [...selectedMembers, userId];
@@ -86,11 +101,17 @@ const Allocation = () => {
   
     setSelectedMembers(newSelectedMembers);
   };
+  
 
   const handleTeamLeadChange = (event) => {
     setSelectedTeamLead(event.target.value);
   };
-
+  const isProjectAllocated = (projectId) => {
+    // Check if any project allocation has the provided projectId
+    return projectAllocations.some(allocation => allocation.projectId === projectId);
+  };
+  
+  
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -120,7 +141,7 @@ const Allocation = () => {
       console.error('Error creating project allocation:', error);
     }
   };
-  
+ 
   const handleMemberRoleChange = (userId) => (event) => {
     const newMemberRoles = [...memberRoles];
     const index = newMemberRoles.findIndex(role => role.userId === userId);
@@ -131,7 +152,7 @@ const Allocation = () => {
     }
     setMemberRoles(newMemberRoles);
   };
-
+ 
   const handleTaskCheckboxChange = (userId, task) => {
     const memberTaskIndex = memberTasks.findIndex(mt => mt.userId === userId);
     if (memberTaskIndex !== -1) {
@@ -147,17 +168,17 @@ const Allocation = () => {
       setMemberTasks([...memberTasks, { userId, tasks: [task] }]);
     }
   };
-
+ 
   const handleTaskFieldClick = (event, memberId) => {
     setAnchorEl(event.currentTarget);
     setSelectedTaskMemberId(memberId);
   };
-
+ 
   const handleClosePopover = () => {
     setAnchorEl(null);
     setSelectedTaskMemberId(null);
   };
-
+ 
   return (
     <div style={{ textAlign: 'center' }}>
       <Button variant="contained" color="primary" style={{ marginBottom: '1rem' }} onClick={handleAllocateProjectsClick}>
@@ -165,7 +186,7 @@ const Allocation = () => {
       </Button>
       {showForm && (
         <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Select
+ <Select
             value={selectedProject}
             onChange={handleProjectChange}
             fullWidth
@@ -173,7 +194,13 @@ const Allocation = () => {
             style={{ height: '40px' }}
           >
             {projects.map((project, index) => (
-              <MenuItem key={index} value={project.projectName}>{project.projectName}</MenuItem>
+              <MenuItem
+                key={index}
+                value={project.projectName}
+                disabled={isProjectAllocated(project.projectId)}
+              >
+                {project.projectName}
+              </MenuItem>
             ))}
           </Select>
           {selectedProjectDetails && (
@@ -186,7 +213,7 @@ const Allocation = () => {
           <Autocomplete
             multiple
             options={filteredUsers.filter(user => user.department !== 'Finance' && user.department !== 'Human Resource')}
-            getOptionLabel={(option) => `${option.name} - ${option.projectAllocation ? 'Allocated' : 'Not allocated'}`}
+            getOptionLabel={(option) => `${option.name} - ${option.projectAllocated ? 'Allocated' : 'Not allocated'}`}
             renderInput={(params) => <TextField {...params} label="Select Members" variant="outlined" />}
             onChange={(event, value) => {
               setSelectedMembers(value.map(user => user.id));
@@ -199,7 +226,7 @@ const Allocation = () => {
             onInputChange={(event, newInputValue) => setSearchTerm(newInputValue)}
             style={{ width: '100%' }}
           />
-
+ 
           {selectedMembers.length > 0 && (
             <Table>
               <TableHead>
@@ -262,8 +289,12 @@ const Allocation = () => {
     </div>
   );
 };
-
+ 
 const getRoleOptions = (projectDomain) => {
+  if (!projectDomain) {
+    return [];
+  }
+
   switch (projectDomain.toLowerCase()) {
     case 'full stack web development':
       return [
@@ -286,7 +317,6 @@ const getRoleOptions = (projectDomain) => {
         <MenuItem key="data-quality-analyst" value="Data Quality Analyst">Data Quality Analyst</MenuItem>,
         <MenuItem key="data-analyst" value="Data Analyst">Data Analyst</MenuItem>,
         <MenuItem key="shadow" value="Shadow">Shadow</MenuItem>
-
       ];
     case 'data science':
       return [
@@ -296,11 +326,11 @@ const getRoleOptions = (projectDomain) => {
         <MenuItem key="data-analyst" value="Data Analyst">Data Analyst</MenuItem>,
         <MenuItem key="statistician" value="Statistician">Statistician</MenuItem>,
         <MenuItem key="shadow" value="Shadow">Shadow</MenuItem>
-
       ];
     default:
       return [];
   }
 };
 
+ 
 export default Allocation;

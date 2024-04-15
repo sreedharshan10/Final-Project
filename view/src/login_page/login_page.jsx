@@ -5,7 +5,7 @@ import './login_page.css'; // Import the CSS file for styling
 const LoginPage = () => {
   const [loginMode, setLoginMode] = useState('user');
   const navigate = useNavigate(); // Initialize useNavigate hook
-
+  const [loginSuccess, setLoginSuccess] = useState(false);
   const handleModeChange = (mode) => {
     setLoginMode(mode);
   };
@@ -33,7 +33,8 @@ const LoginPage = () => {
             // Admin authentication successful
             console.log('Admin login successful');
             // Redirect to admin landing page
-            navigate('/admin'); // Use navigate to redirect
+            setLoginSuccess(true);
+            navigate('/Dashboard'); // Use navigate to redirect
           } else {
             // Admin authentication failed
             console.error('Admin login failed');
@@ -104,6 +105,11 @@ const LoginPage = () => {
   return (
     <div className="login-container"> {/* Apply the unique class here */}
       <h2>Login</h2>
+      {loginSuccess && (
+        <Alert variant="filled" severity="success">
+          Login successful!
+        </Alert>
+      )}
       <div className="mode-selection">
         <label>
           <input

@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import {
+    Container,
+    Typography,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    TextField,
+    Button,
+    Grid,
+} from '@mui/material';
 
 function FeedbackForm() {
     const { userId } = useParams(); // Get userId from URL params
@@ -9,6 +20,8 @@ function FeedbackForm() {
     const [selectedFeedbackId, setSelectedFeedbackId] = useState('');
     const [projectType, setProjectType] = useState('');
     const [feedbackFields, setFeedbackFields] = useState([]);
+    const [projectId, setProjectId] = useState('');
+    const [projectName, setProjectName] = useState('');
 
     useEffect(() => {
         // Fetch timesheets for the user when component mounts
@@ -18,9 +31,10 @@ function FeedbackForm() {
     // Function to fetch timesheets for the user from the server
     const fetchTimesheets = async () => {
         try {
-            const response = await axios.get('http://localhost:3002/api/timesheets'); // Adjust the endpoint URL as needed
-            setTimesheets(response.data);
-            const uniqueFeedbackIds = [...new Set(response.data.map((timesheet) => timesheet.feedbackId))];
+            const response = await axios.get('http://localhost:3002/api/timesheets');
+            const userTimesheets = response.data.filter(timesheet => timesheet.userId === userId);
+            setTimesheets(userTimesheets);
+            const uniqueFeedbackIds = [...new Set(userTimesheets.map((timesheet) => timesheet.feedbackId))];
             setFeedbackIds(uniqueFeedbackIds);
         } catch (error) {
             console.error('Error fetching timesheets:', error);
@@ -36,7 +50,10 @@ function FeedbackForm() {
         const selectedTimesheet = timesheets.find((timesheet) => timesheet.feedbackId === feedbackId);
 
         if (selectedTimesheet) {
-            setProjectType(selectedTimesheet.projectType);
+            const { projectId, projectName, projectType } = selectedTimesheet;
+            setProjectType(projectType);
+            setProjectId(projectId); // Assuming you have a state variable for projectId
+            setProjectName(projectName); // Assuming you have a state variable for projectName
             const questionsCount = questions[selectedTimesheet.projectType].length;
             setFeedbackFields(Array.from({ length: questionsCount + 1 }, () => ''));
         } else {
@@ -61,16 +78,55 @@ function FeedbackForm() {
     };
 
     // Function to submit feedback
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Add logic to submit feedback to server or perform other actions
-        console.log('Project Type:', projectType);
-        console.log('Feedback Fields:', feedbackFields);
-        // Reset feedback state after submission if needed
-        setSelectedFeedbackId('');
-        setProjectType('');
-        setFeedbackFields([]);
+// Function to submit feedback
+const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Create an object to store the feedback data
+    const feedbackData = {
+        userId: userId,
+        projectId: projectId,
+        projectName: projectName,
+        projectType: projectType,
+        feedbackId: selectedFeedbackId,
+        numericalFeedback: {}, // Object to store numerical feedback questions and scores
+        additionalComments: feedbackFields[fetchQuestions(projectType).length - 1] || '' // Additional comments
     };
+
+    // Populate numerical feedback questions and scores
+    if (projectType) {
+        const numericalQuestions = fetchQuestions(projectType).slice(0, -1); // Exclude additional comments question
+        numericalQuestions.forEach((question, index) => {
+            const questionLabel = `Q${index + 1}`; // Create label like Q1, Q2, etc.
+            feedbackData.numericalFeedback[questionLabel] = parseInt(feedbackFields[index], 10) || 0; // Parse score to integer, default to 0 if empty
+        });
+    }
+
+    console.log('Input Feedback Data:', feedbackData); // Console log the input data
+
+    try {
+        const response = await fetch('http://localhost:3004/api/feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(feedbackData),
+        });
+
+        if (!response.ok) {
+            throw new Error('Error submitting feedback');
+        }
+
+        const responseData = await response.json();
+        alert('Feedback submitted successfully');
+        window.location.reload();
+        console.log('Feedback submitted successfully:', responseData);
+    } catch (error) {
+        console.error('Error submitting feedback:', error.message);
+    }
+};
+
+
 
     // Questions object
     const questions = {
@@ -120,53 +176,66 @@ function FeedbackForm() {
 
     // Render the component
     return (
-        <div className="content-container">
-            <h1 style={{ marginTop: "5px", marginBottom: "0px", color: "midnightblue" }}>Feedback Form</h1>
-            <div className="h3-row" style={{ color: "midnightblue" }}>
-                <h3>Please provide your feedback below:</h3>
-            </div>
-            <form onSubmit={handleSubmit}>
-                <div className="feedback-form">
-                    <div style={{ marginBottom: "10px" }}>
-                        <label style={{ marginRight: "10px" }}>Select Feedback ID:</label>
-                        <select value={selectedFeedbackId} onChange={handleFeedbackIdChange}>
-                            <option value="">-- Select Feedback ID --</option>
-                            {feedbackIds.map((feedbackId) => (
-                                <option key={feedbackId} value={feedbackId}>{feedbackId}</option>
-                            ))}
-                        </select>
-                    </div>
-                    {projectType && fetchQuestions(projectType).map((question, index) => (
-                        <div key={index} style={{ marginBottom: "10px" }}>
-                            <strong>{question.split(': ')[0]}:</strong><br /> {question.split(': ')[1]}
-                            <br />
-                            <select
-                                value={feedbackFields[index] || ''} // Ensure empty value for each field upon initialization
-                                onChange={(e) => handleFeedbackFieldChange(index, e.target.value)}
+        <Container maxWidth="md">
+            <Typography variant="h4" style={{ marginTop: "5px", marginBottom: "0px", color: "midnightblue", textAlign: "center" }}>Feedback Form</Typography>
+            <Typography variant="h6" style={{ color: "midnightblue", textAlign: "center" }}>Please provide your feedback below:</Typography><br />
+            <Grid container justifyContent="center">
+                <Grid item xs={12} sm={6}>
+                    <form onSubmit={handleSubmit}>
+                        <FormControl fullWidth style={{ marginBottom: "20px" }}>
+                            <InputLabel>Select Feedback ID</InputLabel>
+                            <Select
+                                value={selectedFeedbackId}
+                                onChange={handleFeedbackIdChange}
                             >
-                                <option value="" disabled>Select Score</option>
-                                {[...Array(10)].map((_, score) => (
-                                    <option key={score} value={score + 1}>{score + 1}</option>
-                                ))}
-                            </select>
-                        </div>
-                    ))}
-                    {projectType && (
-                        <div style={{ marginBottom: "10px" }}>
-                            <strong>Additional Comments:</strong><br />
-                            <textarea
-                                value={feedbackFields[fetchQuestions(projectType).length] || ''} // Field for comments is after the questions
-                                onChange={(e) => handleFeedbackFieldChange(fetchQuestions(projectType).length, e.target.value)}
-                                rows={4} cols={50}
-                            ></textarea>
-                        </div>
-                    )}
+                                <MenuItem value="">-- Select Feedback ID --</MenuItem><br />
 
-                    {!projectType && <p>Please select a feedback ID to view questions.</p>}
-                    <button type="submit" style={{ marginTop: "10px", padding: "8px 20px", fontSize: "16px", backgroundColor: "#FF00FF", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Submit Feedback</button>
-                </div>
-            </form>
-        </div>
+                                {feedbackIds.map((feedbackId) => (
+                                    <MenuItem key={feedbackId} value={feedbackId}>{feedbackId}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        {projectType && fetchQuestions(projectType).map((question, index) => (
+                            <div key={index} style={{ marginBottom: "20px" }}>
+                                <Typography variant="body1"><strong>{question.split(': ')[0]}:</strong> {question.split(': ')[1]}</Typography>
+                                {index !== fetchQuestions(projectType).length - 1 ? (
+                                    <FormControl fullWidth>
+                                        <InputLabel>Select Score</InputLabel>
+                                        <Select
+                                            value={feedbackFields[index] || ''}
+                                            onChange={(e) => handleFeedbackFieldChange(index, e.target.value)}
+                                        >
+                                            <MenuItem value="" disabled>Select Score</MenuItem>
+                                            {[...Array(10)].map((_, score) => (
+                                                <MenuItem key={score} value={score + 1}>{score + 1}</MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
+                                ) : (
+                                    <TextField
+                                        multiline
+                                        fullWidth
+                                        rows={4}
+                                        label="Additional Comments"
+                                        variant="outlined"
+                                        value={feedbackFields[index] || ''}
+                                        onChange={(e) => handleFeedbackFieldChange(index, e.target.value)}
+                                    />
+                                )}
+                            </div>
+                        ))}
+                        {!projectType && <Typography variant="body1">Please select a feedback ID to view questions.</Typography>}
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            style={{ marginTop: "20px", backgroundColor: "#FF00FF", color: "white", borderRadius: "5px" }}
+                        >
+                            Submit Feedback
+                        </Button>
+                    </form>
+                </Grid>
+            </Grid>
+        </Container>
     );
 }
 

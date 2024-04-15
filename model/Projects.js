@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const projectSchema = new mongoose.Schema({
-    projectId:{
-        type:String,
-        required:true,
-    },
+  projectId: {
+    type: String,
+    required: true,
+  },
   projectName: {
     type: String,
     required: true,
@@ -18,6 +18,10 @@ const projectSchema = new mongoose.Schema({
     required: true,
   },
   projectLead: {
+    type: String,
+    required: true,
+  },
+  leadUserId: { // New field for storing the userId of the project lead
     type: String,
     required: true,
   },

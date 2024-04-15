@@ -40,23 +40,30 @@ app.post('/api/user/login', async (req, res) => {
 });
 
 // Admin login endpoint
+
+// Endpoint for admin login
 app.post('/api/admin/login', async (req, res) => {
-  const { email, key } = req.body;
+  const { email, adminId, adminKey } = req.body;
+
   try {
-    const admin = await Admin.findOne({ email });
-    if (!admin) {
-      return res.status(404).json({ message: 'Admin not found' });
+    // Find admin by email and key
+    const admin = await Admin.findOne({ email, id: adminId, key: adminKey });
+
+    if (admin) {
+      // If admin found, return success message or admin data
+      return res.status(200).json({ message: 'Admin login successful', admin });
+    } else {
+      // If admin not found, return error message
+      return res.status(401).json({ message: 'Admin login failed', error: 'Invalid credentials' });
     }
-    if (admin.key !== key) {
-      return res.status(401).json({ message: 'Invalid key' });
-    }
-    // If login successful, you can generate a JWT token and send it back to the client
-    res.status(200).json({ message: 'Admin logged in successfully' });
   } catch (error) {
+    // If an error occurs, return error message
     console.error('Error during admin login:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+module.exports = app;
 
 // Start the server
 const PORT = process.env.PORT || 3003;

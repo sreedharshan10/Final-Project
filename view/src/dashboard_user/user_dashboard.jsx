@@ -104,7 +104,12 @@ const Dashboard2 = () => {
   const handleProfileClick = () => {
     setShowUserContent(true); // Display user content when profile is clicked
   };
-
+  const handleLogout = () => {
+    // Clear local storage
+    localStorage.removeItem('authToken'); // Example: Remove authentication token
+    // Redirect the user to the login page
+    window.location.href = '/'; // Redirect using window.location.href
+  };
   const fetchUsers = async () => {
     try {
       const response = await fetch(`http://localhost:3000/api/users`);
@@ -174,7 +179,7 @@ const Dashboard2 = () => {
           <Divider />
           <List>
             <ListItem>
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onClick={handleLogout}>
                 Logout
               </Button>
             </ListItem>
