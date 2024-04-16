@@ -1,0 +1,361 @@
+,,0
+vader_sentiment,"('DASC01', 'positive')",12.0
+vader_sentiment,"('DASC01', 'negative')",11.0
+vader_sentiment,"('DASC01', 'neutral')",5.0
+vader_sentiment,"('DASC02', 'positive')",46.0
+vader_sentiment,"('DASC02', 'negative')",38.0
+vader_sentiment,"('DASC02', 'neutral')",7.0
+vader_sentiment,"('DASC03', 'positive')",48.0
+vader_sentiment,"('DASC03', 'negative')",34.0
+vader_sentiment,"('DASC03', 'neutral')",8.0
+vader_sentiment,"('DASC04', 'positive')",38.0
+vader_sentiment,"('DASC04', 'negative')",30.0
+vader_sentiment,"('DASC04', 'neutral')",10.0
+vader_sentiment,"('DASC05', 'positive')",39.0
+vader_sentiment,"('DASC05', 'negative')",33.0
+vader_sentiment,"('DASC05', 'neutral')",6.0
+vader_sentiment,"('DASC06', 'positive')",36.0
+vader_sentiment,"('DASC06', 'negative')",28.0
+vader_sentiment,"('DASC06', 'neutral')",8.0
+vader_sentiment,"('DASC07', 'positive')",38.0
+vader_sentiment,"('DASC07', 'negative')",34.0
+vader_sentiment,"('DASC07', 'neutral')",12.0
+vader_sentiment,"('DASC08', 'positive')",60.0
+vader_sentiment,"('DASC08', 'negative')",49.0
+vader_sentiment,"('DASC08', 'neutral')",11.0
+vader_sentiment,"('DASC11', 'negative')",32.0
+vader_sentiment,"('DASC11', 'positive')",30.0
+vader_sentiment,"('DASC11', 'neutral')",10.0
+vader_sentiment,"('DASC12', 'positive')",55.0
+vader_sentiment,"('DASC12', 'negative')",51.0
+vader_sentiment,"('DASC12', 'neutral')",14.0
+vader_sentiment,"('DASC13', 'negative')",53.0
+vader_sentiment,"('DASC13', 'positive')",50.0
+vader_sentiment,"('DASC13', 'neutral')",11.0
+vader_sentiment,"('DASC14', 'positive')",44.0
+vader_sentiment,"('DASC14', 'negative')",38.0
+vader_sentiment,"('DASC14', 'neutral')",14.0
+vader_sentiment,"('DASC15', 'positive')",47.0
+vader_sentiment,"('DASC15', 'negative')",34.0
+vader_sentiment,"('DASC15', 'neutral')",15.0
+vader_sentiment,"('DASC16', 'positive')",51.0
+vader_sentiment,"('DASC16', 'negative')",37.0
+vader_sentiment,"('DASC16', 'neutral')",8.0
+vader_sentiment,"('DASC17', 'negative')",38.0
+vader_sentiment,"('DASC17', 'positive')",35.0
+vader_sentiment,"('DASC17', 'neutral')",11.0
+vader_sentiment,"('DATA01', 'positive')",26.0
+vader_sentiment,"('DATA01', 'negative')",21.0
+vader_sentiment,"('DATA01', 'neutral')",10.0
+vader_sentiment,"('DATA02', 'positive')",50.0
+vader_sentiment,"('DATA02', 'negative')",38.0
+vader_sentiment,"('DATA02', 'neutral')",17.0
+vader_sentiment,"('DATA03', 'positive')",59.0
+vader_sentiment,"('DATA03', 'negative')",50.0
+vader_sentiment,"('DATA03', 'neutral')",11.0
+vader_sentiment,"('DATA04', 'positive')",63.0
+vader_sentiment,"('DATA04', 'negative')",51.0
+vader_sentiment,"('DATA04', 'neutral')",18.0
+vader_sentiment,"('DATA05', 'positive')",44.0
+vader_sentiment,"('DATA05', 'negative')",31.0
+vader_sentiment,"('DATA05', 'neutral')",9.0
+vader_sentiment,"('DATA06', 'positive')",45.0
+vader_sentiment,"('DATA06', 'negative')",36.0
+vader_sentiment,"('DATA06', 'neutral')",9.0
+vader_sentiment,"('DATA07', 'positive')",56.0
+vader_sentiment,"('DATA07', 'negative')",41.0
+vader_sentiment,"('DATA07', 'neutral')",11.0
+vader_sentiment,"('DATA08', 'positive')",50.0
+vader_sentiment,"('DATA08', 'negative')",40.0
+vader_sentiment,"('DATA08', 'neutral')",12.0
+vader_sentiment,"('DATA11', 'negative')",54.0
+vader_sentiment,"('DATA11', 'positive')",44.0
+vader_sentiment,"('DATA11', 'neutral')",10.0
+vader_sentiment,"('DATA12', 'positive')",50.0
+vader_sentiment,"('DATA12', 'negative')",36.0
+vader_sentiment,"('DATA12', 'neutral')",10.0
+vader_sentiment,"('DATA13', 'positive')",47.0
+vader_sentiment,"('DATA13', 'negative')",41.0
+vader_sentiment,"('DATA13', 'neutral')",14.0
+vader_sentiment,"('DATA14', 'positive')",53.0
+vader_sentiment,"('DATA14', 'negative')",30.0
+vader_sentiment,"('DATA14', 'neutral')",13.0
+vader_sentiment,"('DATA15', 'positive')",48.0
+vader_sentiment,"('DATA15', 'negative')",34.0
+vader_sentiment,"('DATA15', 'neutral')",14.0
+vader_sentiment,"('DATA16', 'positive')",44.0
+vader_sentiment,"('DATA16', 'negative')",37.0
+vader_sentiment,"('DATA16', 'neutral')",9.0
+vader_sentiment,"('DATA17', 'positive')",51.0
+vader_sentiment,"('DATA17', 'negative')",33.0
+vader_sentiment,"('DATA17', 'neutral')",12.0
+vader_sentiment,"('FULL01', 'negative')",35.0
+vader_sentiment,"('FULL01', 'positive')",33.0
+vader_sentiment,"('FULL01', 'neutral')",5.0
+vader_sentiment,"('FULL02', 'positive')",56.0
+vader_sentiment,"('FULL02', 'negative')",38.0
+vader_sentiment,"('FULL02', 'neutral')",8.0
+vader_sentiment,"('FULL03', 'positive')",55.0
+vader_sentiment,"('FULL03', 'negative')",52.0
+vader_sentiment,"('FULL03', 'neutral')",13.0
+vader_sentiment,"('FULL04', 'negative')",53.0
+vader_sentiment,"('FULL04', 'positive')",42.0
+vader_sentiment,"('FULL04', 'neutral')",10.0
+vader_sentiment,"('FULL05', 'positive')",39.0
+vader_sentiment,"('FULL05', 'negative')",36.0
+vader_sentiment,"('FULL05', 'neutral')",9.0
+vader_sentiment,"('FULL06', 'negative')",41.0
+vader_sentiment,"('FULL06', 'positive')",40.0
+vader_sentiment,"('FULL06', 'neutral')",9.0
+vader_sentiment,"('FULL07', 'positive')",60.0
+vader_sentiment,"('FULL07', 'negative')",36.0
+vader_sentiment,"('FULL07', 'neutral')",18.0
+vader_sentiment,"('FULL08', 'positive')",43.0
+vader_sentiment,"('FULL08', 'negative')",24.0
+vader_sentiment,"('FULL08', 'neutral')",11.0
+vader_sentiment,"('FULL11', 'negative')",46.0
+vader_sentiment,"('FULL11', 'positive')",41.0
+vader_sentiment,"('FULL11', 'neutral')",15.0
+vader_sentiment,"('FULL12', 'positive')",55.0
+vader_sentiment,"('FULL12', 'negative')",50.0
+vader_sentiment,"('FULL12', 'neutral')",7.0
+vader_sentiment,"('FULL13', 'positive')",60.0
+vader_sentiment,"('FULL13', 'negative')",53.0
+vader_sentiment,"('FULL13', 'neutral')",13.0
+vader_sentiment,"('FULL14', 'positive')",49.0
+vader_sentiment,"('FULL14', 'negative')",40.0
+vader_sentiment,"('FULL14', 'neutral')",7.0
+vader_sentiment,"('FULL15', 'negative')",46.0
+vader_sentiment,"('FULL15', 'positive')",45.0
+vader_sentiment,"('FULL15', 'neutral')",11.0
+vader_sentiment,"('FULL16', 'positive')",46.0
+vader_sentiment,"('FULL16', 'negative')",24.0
+vader_sentiment,"('FULL16', 'neutral')",8.0
+vader_sentiment,"('FULL17', 'negative')",46.0
+vader_sentiment,"('FULL17', 'positive')",39.0
+vader_sentiment,"('FULL17', 'neutral')",11.0
+vader_sentiment,DASC01,
+vader_sentiment,DASC02,
+vader_sentiment,DASC03,
+vader_sentiment,DASC04,
+vader_sentiment,DASC05,
+vader_sentiment,DASC06,
+vader_sentiment,DASC07,
+vader_sentiment,DASC08,
+vader_sentiment,DASC11,
+vader_sentiment,DASC12,
+vader_sentiment,DASC13,
+vader_sentiment,DASC14,
+vader_sentiment,DASC15,
+vader_sentiment,DASC16,
+vader_sentiment,DASC17,
+vader_sentiment,DATA01,
+vader_sentiment,DATA02,
+vader_sentiment,DATA03,
+vader_sentiment,DATA04,
+vader_sentiment,DATA05,
+vader_sentiment,DATA06,
+vader_sentiment,DATA07,
+vader_sentiment,DATA08,
+vader_sentiment,DATA11,
+vader_sentiment,DATA12,
+vader_sentiment,DATA13,
+vader_sentiment,DATA14,
+vader_sentiment,DATA15,
+vader_sentiment,DATA16,
+vader_sentiment,DATA17,
+vader_sentiment,FULL01,
+vader_sentiment,FULL02,
+vader_sentiment,FULL03,
+vader_sentiment,FULL04,
+vader_sentiment,FULL05,
+vader_sentiment,FULL06,
+vader_sentiment,FULL07,
+vader_sentiment,FULL08,
+vader_sentiment,FULL11,
+vader_sentiment,FULL12,
+vader_sentiment,FULL13,
+vader_sentiment,FULL14,
+vader_sentiment,FULL15,
+vader_sentiment,FULL16,
+vader_sentiment,FULL17,
+vader_compound_score,"('DASC01', 'positive')",
+vader_compound_score,"('DASC01', 'negative')",
+vader_compound_score,"('DASC01', 'neutral')",
+vader_compound_score,"('DASC02', 'positive')",
+vader_compound_score,"('DASC02', 'negative')",
+vader_compound_score,"('DASC02', 'neutral')",
+vader_compound_score,"('DASC03', 'positive')",
+vader_compound_score,"('DASC03', 'negative')",
+vader_compound_score,"('DASC03', 'neutral')",
+vader_compound_score,"('DASC04', 'positive')",
+vader_compound_score,"('DASC04', 'negative')",
+vader_compound_score,"('DASC04', 'neutral')",
+vader_compound_score,"('DASC05', 'positive')",
+vader_compound_score,"('DASC05', 'negative')",
+vader_compound_score,"('DASC05', 'neutral')",
+vader_compound_score,"('DASC06', 'positive')",
+vader_compound_score,"('DASC06', 'negative')",
+vader_compound_score,"('DASC06', 'neutral')",
+vader_compound_score,"('DASC07', 'positive')",
+vader_compound_score,"('DASC07', 'negative')",
+vader_compound_score,"('DASC07', 'neutral')",
+vader_compound_score,"('DASC08', 'positive')",
+vader_compound_score,"('DASC08', 'negative')",
+vader_compound_score,"('DASC08', 'neutral')",
+vader_compound_score,"('DASC11', 'negative')",
+vader_compound_score,"('DASC11', 'positive')",
+vader_compound_score,"('DASC11', 'neutral')",
+vader_compound_score,"('DASC12', 'positive')",
+vader_compound_score,"('DASC12', 'negative')",
+vader_compound_score,"('DASC12', 'neutral')",
+vader_compound_score,"('DASC13', 'negative')",
+vader_compound_score,"('DASC13', 'positive')",
+vader_compound_score,"('DASC13', 'neutral')",
+vader_compound_score,"('DASC14', 'positive')",
+vader_compound_score,"('DASC14', 'negative')",
+vader_compound_score,"('DASC14', 'neutral')",
+vader_compound_score,"('DASC15', 'positive')",
+vader_compound_score,"('DASC15', 'negative')",
+vader_compound_score,"('DASC15', 'neutral')",
+vader_compound_score,"('DASC16', 'positive')",
+vader_compound_score,"('DASC16', 'negative')",
+vader_compound_score,"('DASC16', 'neutral')",
+vader_compound_score,"('DASC17', 'negative')",
+vader_compound_score,"('DASC17', 'positive')",
+vader_compound_score,"('DASC17', 'neutral')",
+vader_compound_score,"('DATA01', 'positive')",
+vader_compound_score,"('DATA01', 'negative')",
+vader_compound_score,"('DATA01', 'neutral')",
+vader_compound_score,"('DATA02', 'positive')",
+vader_compound_score,"('DATA02', 'negative')",
+vader_compound_score,"('DATA02', 'neutral')",
+vader_compound_score,"('DATA03', 'positive')",
+vader_compound_score,"('DATA03', 'negative')",
+vader_compound_score,"('DATA03', 'neutral')",
+vader_compound_score,"('DATA04', 'positive')",
+vader_compound_score,"('DATA04', 'negative')",
+vader_compound_score,"('DATA04', 'neutral')",
+vader_compound_score,"('DATA05', 'positive')",
+vader_compound_score,"('DATA05', 'negative')",
+vader_compound_score,"('DATA05', 'neutral')",
+vader_compound_score,"('DATA06', 'positive')",
+vader_compound_score,"('DATA06', 'negative')",
+vader_compound_score,"('DATA06', 'neutral')",
+vader_compound_score,"('DATA07', 'positive')",
+vader_compound_score,"('DATA07', 'negative')",
+vader_compound_score,"('DATA07', 'neutral')",
+vader_compound_score,"('DATA08', 'positive')",
+vader_compound_score,"('DATA08', 'negative')",
+vader_compound_score,"('DATA08', 'neutral')",
+vader_compound_score,"('DATA11', 'negative')",
+vader_compound_score,"('DATA11', 'positive')",
+vader_compound_score,"('DATA11', 'neutral')",
+vader_compound_score,"('DATA12', 'positive')",
+vader_compound_score,"('DATA12', 'negative')",
+vader_compound_score,"('DATA12', 'neutral')",
+vader_compound_score,"('DATA13', 'positive')",
+vader_compound_score,"('DATA13', 'negative')",
+vader_compound_score,"('DATA13', 'neutral')",
+vader_compound_score,"('DATA14', 'positive')",
+vader_compound_score,"('DATA14', 'negative')",
+vader_compound_score,"('DATA14', 'neutral')",
+vader_compound_score,"('DATA15', 'positive')",
+vader_compound_score,"('DATA15', 'negative')",
+vader_compound_score,"('DATA15', 'neutral')",
+vader_compound_score,"('DATA16', 'positive')",
+vader_compound_score,"('DATA16', 'negative')",
+vader_compound_score,"('DATA16', 'neutral')",
+vader_compound_score,"('DATA17', 'positive')",
+vader_compound_score,"('DATA17', 'negative')",
+vader_compound_score,"('DATA17', 'neutral')",
+vader_compound_score,"('FULL01', 'negative')",
+vader_compound_score,"('FULL01', 'positive')",
+vader_compound_score,"('FULL01', 'neutral')",
+vader_compound_score,"('FULL02', 'positive')",
+vader_compound_score,"('FULL02', 'negative')",
+vader_compound_score,"('FULL02', 'neutral')",
+vader_compound_score,"('FULL03', 'positive')",
+vader_compound_score,"('FULL03', 'negative')",
+vader_compound_score,"('FULL03', 'neutral')",
+vader_compound_score,"('FULL04', 'negative')",
+vader_compound_score,"('FULL04', 'positive')",
+vader_compound_score,"('FULL04', 'neutral')",
+vader_compound_score,"('FULL05', 'positive')",
+vader_compound_score,"('FULL05', 'negative')",
+vader_compound_score,"('FULL05', 'neutral')",
+vader_compound_score,"('FULL06', 'negative')",
+vader_compound_score,"('FULL06', 'positive')",
+vader_compound_score,"('FULL06', 'neutral')",
+vader_compound_score,"('FULL07', 'positive')",
+vader_compound_score,"('FULL07', 'negative')",
+vader_compound_score,"('FULL07', 'neutral')",
+vader_compound_score,"('FULL08', 'positive')",
+vader_compound_score,"('FULL08', 'negative')",
+vader_compound_score,"('FULL08', 'neutral')",
+vader_compound_score,"('FULL11', 'negative')",
+vader_compound_score,"('FULL11', 'positive')",
+vader_compound_score,"('FULL11', 'neutral')",
+vader_compound_score,"('FULL12', 'positive')",
+vader_compound_score,"('FULL12', 'negative')",
+vader_compound_score,"('FULL12', 'neutral')",
+vader_compound_score,"('FULL13', 'positive')",
+vader_compound_score,"('FULL13', 'negative')",
+vader_compound_score,"('FULL13', 'neutral')",
+vader_compound_score,"('FULL14', 'positive')",
+vader_compound_score,"('FULL14', 'negative')",
+vader_compound_score,"('FULL14', 'neutral')",
+vader_compound_score,"('FULL15', 'negative')",
+vader_compound_score,"('FULL15', 'positive')",
+vader_compound_score,"('FULL15', 'neutral')",
+vader_compound_score,"('FULL16', 'positive')",
+vader_compound_score,"('FULL16', 'negative')",
+vader_compound_score,"('FULL16', 'neutral')",
+vader_compound_score,"('FULL17', 'negative')",
+vader_compound_score,"('FULL17', 'positive')",
+vader_compound_score,"('FULL17', 'neutral')",
+vader_compound_score,DASC01,0.0573857142857143
+vader_compound_score,DASC02,0.10032967032967031
+vader_compound_score,DASC03,0.10386111111111111
+vader_compound_score,DASC04,0.04580384615384615
+vader_compound_score,DASC05,0.09598974358974359
+vader_compound_score,DASC06,0.13079722222222223
+vader_compound_score,DASC07,0.03461547619047619
+vader_compound_score,DASC08,0.07200833333333333
+vader_compound_score,DASC11,-0.004661111111111111
+vader_compound_score,DASC12,0.04387416666666667
+vader_compound_score,DASC13,0.04101578947368421
+vader_compound_score,DASC14,0.039059375
+vader_compound_score,DASC15,0.06820520833333334
+vader_compound_score,DASC16,0.09171354166666668
+vader_compound_score,DASC17,0.012971428571428575
+vader_compound_score,DATA01,0.09684561403508772
+vader_compound_score,DATA02,0.037252380952380953
+vader_compound_score,DATA03,0.03866083333333334
+vader_compound_score,DATA04,0.044862121212121214
+vader_compound_score,DATA05,0.0926345238095238
+vader_compound_score,DATA06,0.08461111111111111
+vader_compound_score,DATA07,0.08773148148148148
+vader_compound_score,DATA08,0.07869313725490196
+vader_compound_score,DATA11,0.005170370370370373
+vader_compound_score,DATA12,0.068628125
+vader_compound_score,DATA13,0.07200686274509803
+vader_compound_score,DATA14,0.17060937499999998
+vader_compound_score,DATA15,0.10001874999999999
+vader_compound_score,DATA16,0.05273777777777778
+vader_compound_score,DATA17,0.12148541666666667
+vader_compound_score,FULL01,0.012902739726027394
+vader_compound_score,FULL02,0.13083039215686273
+vader_compound_score,FULL03,0.028710833333333335
+vader_compound_score,FULL04,0.009204761904761903
+vader_compound_score,FULL05,0.051536904761904756
+vader_compound_score,FULL06,0.08517888888888889
+vader_compound_score,FULL07,0.13608245614035086
+vader_compound_score,FULL08,0.13072820512820513
+vader_compound_score,FULL11,-0.0060245098039215655
+vader_compound_score,FULL12,0.02651875
+vader_compound_score,FULL13,0.07254603174603175
+vader_compound_score,FULL14,0.08490520833333333
+vader_compound_score,FULL15,-0.010472549019607839
+vader_compound_score,FULL16,0.14943076923076923
+vader_compound_score,FULL17,-0.015610416666666661
