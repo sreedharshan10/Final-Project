@@ -11,6 +11,8 @@ import {
     TextField,
     Button,
     Grid,
+    createTheme,
+    ThemeProvider, // Import ThemeProvider
 } from '@mui/material';
 
 function FeedbackForm() {
@@ -76,7 +78,19 @@ function FeedbackForm() {
         updatedFields[index] = value;
         setFeedbackFields(updatedFields);
     };
-
+    const theme = createTheme({
+        typography: {
+            fontFamily: 'Montserrat, sans-serif',
+        },
+        palette: {
+            primary: {
+                main: '#FF00FF', // Primary color
+            },
+            secondary: {
+                main: '#FFFFFF', // Secondary color
+            },
+        },
+    });
     // Function to submit feedback
 // Function to submit feedback
 const handleSubmit = async (e) => {
@@ -176,6 +190,8 @@ const handleSubmit = async (e) => {
 
     // Render the component
     return (
+        <ThemeProvider theme={theme}>
+
         <Container maxWidth="md">
             <Typography variant="h4" style={{ marginTop: "5px", marginBottom: "0px", color: "midnightblue", textAlign: "center" }}>Feedback Form</Typography>
             <Typography variant="h6" style={{ color: "midnightblue", textAlign: "center" }}>Please provide your feedback below:</Typography><br />
@@ -236,6 +252,8 @@ const handleSubmit = async (e) => {
                 </Grid>
             </Grid>
         </Container>
+        </ThemeProvider>
+
     );
 }
 

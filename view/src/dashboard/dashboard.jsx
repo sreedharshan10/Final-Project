@@ -12,6 +12,7 @@ import AdminLanding from '../landing_page/admin_landing';
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 import { createTheme } from '@material-ui/core/styles';
+import logo from '../assets/logo.png';
 
 const drawerWidth = 160;
 
@@ -171,10 +172,10 @@ const Dashboard1 = () => {
           }}
         >
           <Toolbar className={classes.toolbar}>
-            <img src="C:\Users\ASUS\OneDrive\Desktop\Final-Project\assets\Screenshot_2024-04-16_011818-transformed-removebg-preview.png" alt="Website Logo" className={classes.websiteLogo} />
+            <img src={logo} alt="Website Logo" className={classes.websiteLogo} />
             <div className={classes.profileContainer}>
               <PersonOutlineIcon className={classes.profileIcon} />
-              <Typography variant="h6" className={classes.profileName}>Your Profile Name</Typography>
+              <Typography variant="h6" className={classes.profileName}>Admin</Typography>
             </div>
           </Toolbar>
           <Divider />
@@ -193,7 +194,7 @@ const Dashboard1 = () => {
           <Divider />
           <List>
             <ListItem>
-              <Button variant="contained" color="primary" onClick={handleLogout}>
+              <Button variant="contained" color="primary" style={{ marginTop: "290px", marginLeft: "15px" }} onClick={handleLogout}>
                 Logout
               </Button>
             </ListItem>

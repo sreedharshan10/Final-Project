@@ -108,6 +108,10 @@ function CreateProjectPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if (projectData.projectStartDate && projectData.projectEndDate && projectData.projectEndDate < projectData.projectStartDate) {
+        alert('Project end date cannot be before the start date');
+        return;
+      }
       // Check if projectLead is empty
       if (!projectData.projectLead) {
         alert('Please select a project lead');

@@ -21,6 +21,9 @@ mongoose.connect('mongodb+srv://srijayhem10:zTjtmPyN52dg9TOO@cluster0.hafz5co.mo
 });
 
 // User login endpoint
+const bcrypt = require('bcryptjs'); // Import bcrypt for password hashing and comparison
+const jwt = require('jsonwebtoken'); // Import jsonwebtoken for generating JWT tokens
+
 app.post('/api/user/login', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -28,11 +31,14 @@ app.post('/api/user/login', async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    if (user.password !== password) {
+    // Compare the provided password with the hashed password using bcrypt
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
       return res.status(401).json({ message: 'Invalid password' });
     }
-    // If login successful, you can generate a JWT token and send it back to the client
-    res.status(200).json({ message: 'User logged in successfully' });
+    // If login successful, generate a JWT token and send it back to the client
+    const token = jwt.sign({ userId: user._id }, 'your_secret_key', { expiresIn: '1h' }); // Change 'your_secret_key' to your actual secret key
+    res.status(200).json({ message: 'User logged in successfully', token });
   } catch (error) {
     console.error('Error during user login:', error);
     res.status(500).json({ message: 'Internal server error' });

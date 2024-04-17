@@ -16,7 +16,16 @@ mongoose.connect('mongodb+srv://srijayhem10:zTjtmPyN52dg9TOO@cluster0.hafz5co.mo
     console.error('Error connecting to MongoDB:', err);
 });
 
-
+app.get('/api/feedback', async (req,res)=>{ 
+    try{
+      const feedbacks= await Feedback.find();
+      console.log('Feedback : ',feedbacks)
+      res.status(200).json(feedbacks);
+    } catch (error){
+      console.error('Error in fetching feedbacks.',error);
+      res.status(500).json({message : 'Failed to fetch feedbacks'})
+    }
+  });
 // Endpoint to handle feedback submission
 // Endpoint to handle feedback submission
 app.post('/api/feedback', async (req, res) => {

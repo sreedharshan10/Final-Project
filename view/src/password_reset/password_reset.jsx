@@ -7,7 +7,7 @@ import './pass.css';
 
 const theme = createTheme({
   typography: {
-    fontFamily: '"Open Sans", sans-serif',
+    fontFamily: '"Monsterrat", sans-serif',
   },
   palette: {
     mode: 'light',
@@ -16,6 +16,43 @@ const theme = createTheme({
     },
     secondary: {
       main: '#FFFFFF',
+    },
+    text: {
+      primary: '#FFFFFF', // White text color
+    },
+  },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '& $notchedOutline': {
+            borderColor: '#FFFFFF', // White border color
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: '#FFFFFF', // White label color
+        },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          color: '#FFFFFF', // White form label color
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          '&::placeholder': {
+            color: '#FFFFFF', // White placeholder color
+          },
+        },
+      },
     },
   },
 });
@@ -60,7 +97,7 @@ function ResetPassword() {
   };
 
   return (
-    <div className="background">
+    <div className="background2" >
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div >

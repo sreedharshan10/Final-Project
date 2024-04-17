@@ -1,21 +1,33 @@
 /* Add Montserrat font to the body */
-body {
-  font-family: 'Montserrat', sans-serif;
+/* Add Montserrat font to the body */
+.background1 {
+  font-family: "Montserrat", sans-serif;
+  background-image: url("SL-113022-54210-35.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Make sure to use a semicolon here */
+  overflow: hidden; /* Prevent any overflow content from being visible */
 }
 
-/* Rest of your existing styles */
 .login-container {
-  width: 400px;
-  height: 400px;
+  width: 80%; /* 80% of the viewport width */
+  max-width: 400px; /* Maximum width of 400px */
+  height: auto; /* Let the height adjust based on content */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background: linear-gradient(135deg, #ff4a4a, #2f4f4f); /* Red and blue gradient */
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.5);
   text-align: center; /* Center text and form elements */
+}
+
+@media (max-width: 600px) { /* Adjust for smaller screens */
+  .login-container {
+    width: 90%; /* 90% of the viewport width */
+  }
 }
 
 h2 {
@@ -33,10 +45,12 @@ h2 {
   color: #fff;
 }
 
-.login-form {
+.login-form input[type="text"],
+.login-form input[type="password"] {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center form items horizontally */
+  background-color: #d6c5c5;
 }
 
 .form-group {
@@ -76,10 +90,3 @@ h2 {
 .login-button:hover {
   background-color: #eee; /* Light gray background color on hover */
 }
-.background {
-  background-image: url('../assets/image.png'); /* Update the path to your image */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
